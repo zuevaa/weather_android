@@ -14,7 +14,7 @@ import java.util.Hashtable;
  * @author ZuevAA
  */
 public class CityTemp {
-    String gv_name, gv_dt, gv_icon, gv_temp_day, gv_temp_nigth;
+    String gv_name, gv_dt, gv_icon, gv_temp_day, gv_temp_night;
     DbHelper gv_db_helper;
     public CityTemp(String pName, String pDate) {
         gv_name = pName;
@@ -39,11 +39,11 @@ public class CityTemp {
     public void SetTempDay(String pTemp) {
         gv_temp_day = pTemp;
     }
-    public String GetTempNigth() {
-        return gv_temp_nigth;
+    public String GetTempNight() {
+        return gv_temp_night;
     }
-    public void SetTempNigth(String pTemp) {
-        gv_temp_nigth = pTemp;
+    public void SetTempNight(String pTemp) {
+        gv_temp_night = pTemp;
     }
     public void Load() {
         SQLiteDatabase lv_db = gv_db_helper.getReadableDatabase();
@@ -52,7 +52,7 @@ public class CityTemp {
             lv_city_temp.moveToFirst();
             gv_icon = lv_city_temp.getString(lv_city_temp.getColumnIndexOrThrow("icon"));
             gv_temp_day = lv_city_temp.getString(lv_city_temp.getColumnIndexOrThrow("temp_day"));
-            gv_temp_nigth = lv_city_temp.getString(lv_city_temp.getColumnIndexOrThrow("temp_nigth"));
+            gv_temp_night = lv_city_temp.getString(lv_city_temp.getColumnIndexOrThrow("temp_night"));
         }
         lv_city_temp.close();
     }
@@ -64,7 +64,7 @@ public class CityTemp {
         lv_cv.put("dt", gv_dt);
         lv_cv.put("icon", gv_icon);
         lv_cv.put("temp_day", gv_temp_day);
-        lv_cv.put("temp_nigth", gv_temp_nigth);
+        lv_cv.put("temp_night", gv_temp_night);
         if (lv_city_temp.getCount() != 0) {
             lv_db.update("city_temp", lv_cv, "name = ? and dt = ?", new String[]{gv_name, gv_dt});
         }
@@ -87,7 +87,7 @@ public class CityTemp {
                 lv_city_temp = new CityTemp(pName, lv_dt);
                 lv_city_temp.SetIcon(lv_city_temp_cur.getString(lv_city_temp_cur.getColumnIndexOrThrow("icon")));
                 lv_city_temp.SetTempDay(lv_city_temp_cur.getString(lv_city_temp_cur.getColumnIndexOrThrow("temp_day")));
-                lv_city_temp.SetTempNigth(lv_city_temp_cur.getString(lv_city_temp_cur.getColumnIndexOrThrow("temp_nigth")));
+                lv_city_temp.SetTempNight(lv_city_temp_cur.getString(lv_city_temp_cur.getColumnIndexOrThrow("temp_night")));
                 lv_city_temp_col.put(lv_dt, lv_city_temp);
             }while(lv_city_temp_cur.moveToNext());                
         }

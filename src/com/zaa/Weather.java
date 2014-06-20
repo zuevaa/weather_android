@@ -1,6 +1,7 @@
 package com.zaa;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 public class Weather extends Activity
@@ -10,6 +11,7 @@ public class Weather extends Activity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        startService(new Intent(this, WeatherService.class));
         setContentView(R.layout.main);
     }
 }

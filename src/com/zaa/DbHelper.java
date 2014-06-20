@@ -33,8 +33,8 @@ public class DbHelper extends SQLiteOpenHelper{
 
   @Override
   public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE city (name TEXT, icon TEXT, temp TEXT, humidity TEXT, pressure TEXT, wind_speed TEXT");
-        db.execSQL("CREATE TABLE city_temp (name TEXT, dt TEXT, icon TEXT, temp_day TEXT, temp_nigth TEXT");
+        db.execSQL("CREATE TABLE city (name TEXT, icon TEXT, temp TEXT, humidity TEXT, pressure TEXT, wind_speed TEXT);");
+        db.execSQL("CREATE TABLE city_temp (name TEXT, dt TEXT, icon TEXT, temp_day TEXT, temp_night TEXT);");
         db.execSQL("CREATE INDEX city_name on city (name ASC);");
         db.execSQL("CREATE INDEX city_temp_name_dt on city_temp (name ASC, dt ASC);");
         db.execSQL("insert into city (name) values ('Москва');");

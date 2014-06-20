@@ -22,6 +22,7 @@ import java.util.zip.GZIPInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
+import java.net.URLEncoder;
 import org.json.JSONArray;
 import org.json.JSONObject;
 public class WeatherService extends Service {
@@ -58,7 +59,7 @@ public class WeatherService extends Service {
                     while (lv_iterator.hasNext ()) {
                         lv_name = lv_iterator.next().toString();
                         lv_city_temp_col = (Hashtable)Cashe.gv_city_temp.get(lv_name);
-                        lv_connection = (HttpURLConnection)new URL("http://api.openweathermap.org/data/2.5/weather?q="+lv_name+"&units=metric").openConnection();
+                        lv_connection = (HttpURLConnection)new URL("http://api.openweathermap.org/data/2.5/weather?q="+URLEncoder.encode(lv_name, "utf-8")+"&units=metric").openConnection();
                         lv_connection.setConnectTimeout(30000);
                         lv_connection.setReadTimeout(30000);
                         lv_connection.setDoOutput(true);
@@ -85,12 +86,12 @@ public class WeatherService extends Service {
                             lv_json_weather = lv_json_response.getJSONArray("weather");
                             if (lv_json_weather != null) {
                                 lv_json_weather_row = (JSONObject)lv_json_weather.get(0);
-                                lv_city.SetIcon(lv_json_weather_row.getString("icon").substring(1, 2));
+                                lv_city.SetIcon(lv_json_weather_row.getString("icon").substring(0, 2));
                             }
                             lv_city.Save();
                         }
                         lv_connection.disconnect();
-                        lv_connection = (HttpURLConnection)new URL("http://api.openweathermap.org/data/2.5/forecast/daily?q="+lv_name+"&units=metric&cnt=7").openConnection();
+                        lv_connection = (HttpURLConnection)new URL("http://api.openweathermap.org/data/2.5/forecast/daily?q="+URLEncoder.encode(lv_name, "utf-8")+"&units=metric&cnt=7").openConnection();
                         lv_connection.setConnectTimeout(30000);
                         lv_connection.setReadTimeout(30000);
                         lv_connection.setDoOutput(true);
@@ -120,11 +121,11 @@ public class WeatherService extends Service {
                                     lv_json_weather = lv_json.getJSONArray("weather");
                                     if (lv_json_weather != null) {
                                         lv_json_weather_row = (JSONObject)lv_json_weather.get(0);
-                                        lv_city_temp.SetIcon(lv_json_weather_row.getString("icon").substring(1, 2));
+                                        lv_city_temp.SetIcon(lv_json_weather_row.getString("icon").substring(0, 2));
                                     }
                                     lv_json_temp = lv_json.getJSONObject("temp");
                                     lv_city_temp.SetTempDay(lv_json_temp.getString("day"));
-                                    lv_city_temp.SetTempNigth(lv_json_temp.getString("nigth"));
+                                    lv_city_temp.SetTempNight(lv_json_temp.getString("night"));
                                     lv_city_temp.Save();
                                 }
                             }
