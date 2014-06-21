@@ -1,5 +1,6 @@
 Z:\home\googleappengine\weather\gen\com\zaa\R.java \
- : Z:\home\googleappengine\weather\res\drawable-hdpi\ic_launcher.png \
+ : Z:\home\googleappengine\weather\res\drawable-hdpi\delete.png \
+Z:\home\googleappengine\weather\res\drawable-hdpi\ic_launcher.png \
 Z:\home\googleappengine\weather\res\drawable-hdpi\w01d.png \
 Z:\home\googleappengine\weather\res\drawable-hdpi\w01n.png \
 Z:\home\googleappengine\weather\res\drawable-hdpi\w02d.png \
@@ -18,6 +19,7 @@ Z:\home\googleappengine\weather\res\drawable-hdpi\w13d.png \
 Z:\home\googleappengine\weather\res\drawable-hdpi\w13n.png \
 Z:\home\googleappengine\weather\res\drawable-hdpi\w50d.png \
 Z:\home\googleappengine\weather\res\drawable-hdpi\w50n.png \
+Z:\home\googleappengine\weather\res\drawable-ldpi\delete.png \
 Z:\home\googleappengine\weather\res\drawable-ldpi\ic_launcher.png \
 Z:\home\googleappengine\weather\res\drawable-ldpi\w01d.png \
 Z:\home\googleappengine\weather\res\drawable-ldpi\w01n.png \
@@ -37,6 +39,7 @@ Z:\home\googleappengine\weather\res\drawable-ldpi\w13d.png \
 Z:\home\googleappengine\weather\res\drawable-ldpi\w13n.png \
 Z:\home\googleappengine\weather\res\drawable-ldpi\w50d.png \
 Z:\home\googleappengine\weather\res\drawable-ldpi\w50n.png \
+Z:\home\googleappengine\weather\res\drawable-mdpi\delete.png \
 Z:\home\googleappengine\weather\res\drawable-mdpi\ic_launcher.png \
 Z:\home\googleappengine\weather\res\drawable-mdpi\w01d.png \
 Z:\home\googleappengine\weather\res\drawable-mdpi\w01n.png \
@@ -56,6 +59,7 @@ Z:\home\googleappengine\weather\res\drawable-mdpi\w13d.png \
 Z:\home\googleappengine\weather\res\drawable-mdpi\w13n.png \
 Z:\home\googleappengine\weather\res\drawable-mdpi\w50d.png \
 Z:\home\googleappengine\weather\res\drawable-mdpi\w50n.png \
+Z:\home\googleappengine\weather\res\drawable-xhdpi\delete.png \
 Z:\home\googleappengine\weather\res\drawable-xhdpi\ic_launcher.png \
 Z:\home\googleappengine\weather\res\drawable-xhdpi\w01d.png \
 Z:\home\googleappengine\weather\res\drawable-xhdpi\w01n.png \
@@ -76,10 +80,13 @@ Z:\home\googleappengine\weather\res\drawable-xhdpi\w13n.png \
 Z:\home\googleappengine\weather\res\drawable-xhdpi\w50d.png \
 Z:\home\googleappengine\weather\res\drawable-xhdpi\w50n.png \
 Z:\home\googleappengine\weather\res\layout\add_city.xml \
-Z:\home\googleappengine\weather\res\layout\list_item.xml \
+Z:\home\googleappengine\weather\res\layout\city_view.xml \
+Z:\home\googleappengine\weather\res\layout\list_item_city.xml \
+Z:\home\googleappengine\weather\res\layout\list_item_city_temp.xml \
 Z:\home\googleappengine\weather\res\layout\load_dialog.xml \
 Z:\home\googleappengine\weather\res\layout\main.xml \
 Z:\home\googleappengine\weather\res\values\strings.xml \
+Z:\home\googleappengine\weather\bin\res\drawable-hdpi\delete.png \
 Z:\home\googleappengine\weather\bin\res\drawable-hdpi\ic_launcher.png \
 Z:\home\googleappengine\weather\bin\res\drawable-hdpi\w01d.png \
 Z:\home\googleappengine\weather\bin\res\drawable-hdpi\w01n.png \
@@ -99,6 +106,7 @@ Z:\home\googleappengine\weather\bin\res\drawable-hdpi\w13d.png \
 Z:\home\googleappengine\weather\bin\res\drawable-hdpi\w13n.png \
 Z:\home\googleappengine\weather\bin\res\drawable-hdpi\w50d.png \
 Z:\home\googleappengine\weather\bin\res\drawable-hdpi\w50n.png \
+Z:\home\googleappengine\weather\bin\res\drawable-ldpi\delete.png \
 Z:\home\googleappengine\weather\bin\res\drawable-ldpi\ic_launcher.png \
 Z:\home\googleappengine\weather\bin\res\drawable-ldpi\w01d.png \
 Z:\home\googleappengine\weather\bin\res\drawable-ldpi\w01n.png \
@@ -118,6 +126,7 @@ Z:\home\googleappengine\weather\bin\res\drawable-ldpi\w13d.png \
 Z:\home\googleappengine\weather\bin\res\drawable-ldpi\w13n.png \
 Z:\home\googleappengine\weather\bin\res\drawable-ldpi\w50d.png \
 Z:\home\googleappengine\weather\bin\res\drawable-ldpi\w50n.png \
+Z:\home\googleappengine\weather\bin\res\drawable-mdpi\delete.png \
 Z:\home\googleappengine\weather\bin\res\drawable-mdpi\ic_launcher.png \
 Z:\home\googleappengine\weather\bin\res\drawable-mdpi\w01d.png \
 Z:\home\googleappengine\weather\bin\res\drawable-mdpi\w01n.png \
@@ -137,6 +146,7 @@ Z:\home\googleappengine\weather\bin\res\drawable-mdpi\w13d.png \
 Z:\home\googleappengine\weather\bin\res\drawable-mdpi\w13n.png \
 Z:\home\googleappengine\weather\bin\res\drawable-mdpi\w50d.png \
 Z:\home\googleappengine\weather\bin\res\drawable-mdpi\w50n.png \
+Z:\home\googleappengine\weather\bin\res\drawable-xhdpi\delete.png \
 Z:\home\googleappengine\weather\bin\res\drawable-xhdpi\ic_launcher.png \
 Z:\home\googleappengine\weather\bin\res\drawable-xhdpi\w01d.png \
 Z:\home\googleappengine\weather\bin\res\drawable-xhdpi\w01n.png \

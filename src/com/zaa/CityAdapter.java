@@ -38,7 +38,7 @@ public class CityAdapter extends ArrayAdapter<String> {
             City lv_city = (City)Cache.gv_city.get(lv_name);
             if (lv_row == null) {
                     LayoutInflater lv_inflater = LayoutInflater.from(gv_context);
-                    lv_row = lv_inflater.inflate(R.layout.list_item, parent, false);
+                    lv_row = lv_inflater.inflate(R.layout.list_item_city, parent, false);
             }
             Time lv_cur_time = new Time();
             lv_cur_time.setToNow();
@@ -58,5 +58,5 @@ public class CityAdapter extends ArrayAdapter<String> {
             lv_city_temp.setText(lv_city.GetTemp()+"°C");
 
             return lv_row;
-    }    
+    }
 }

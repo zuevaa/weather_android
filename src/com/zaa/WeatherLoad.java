@@ -69,7 +69,7 @@ public class WeatherLoad {
                     lv_city.SetPressure(lv_json.getString("pressure"));
                     lv_city.SetHumidity(lv_json.getString("humidity"));
                     lv_json = lv_json_response.getJSONObject("wind");
-                    lv_city.SetPressure(lv_json.getString("speed"));
+                    lv_city.SetWindSpeed(lv_json.getString("speed"));
                     lv_json_weather = lv_json_response.getJSONArray("weather");
                     if (lv_json_weather != null) {
                         lv_json_weather_row = (JSONObject)lv_json_weather.get(0);
@@ -94,6 +94,7 @@ public class WeatherLoad {
                 lv_response = convertStreamToString(lv_in_stream);
                 lv_json_response = new JSONObject(lv_response);
                 if (lv_json_response.getString("cod").equals("200")) {
+                    CityTemp.DeleteCityTemp(lv_name);
                     lv_json_array = lv_json_response.getJSONArray("list");
                     if (lv_json_array != null) {
                         for (int i=0; i<lv_json_array.length(); i++) {

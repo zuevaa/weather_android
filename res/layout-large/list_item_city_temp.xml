@@ -3,24 +3,26 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal" >
-
-    <ImageView
-        android:id="@+id/weatherIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left" />
-
     <TextView
-        android:id="@+id/cityName"
+        android:id="@+id/tempDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        />      
+    <ImageView
+        android:id="@+id/weatherIconDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"/>
     <TextView
-        android:id="@+id/cityTemp"
+        android:id="@+id/tempDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/weatherIconNight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"/>
+    <TextView
+        android:id="@+id/tempNight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </LinearLayout>

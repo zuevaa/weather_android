@@ -95,10 +95,9 @@ public class CityTemp {
         Cache.gv_city_temp.put(pName, lv_city_temp_col);
     }
     
-    public static void DeleteOldCityTemp() {
+    public static void DeleteCityTemp(String pCity) {
         SQLiteDatabase lv_db = DbHelper.Get_Instance().getWritableDatabase();
-        String lv_cur_time = String.valueOf((System.currentTimeMillis() / 1000L) - 86400);
-        lv_db.delete("city_temp", "dt < ?", new String[]{lv_cur_time});
+        lv_db.delete("city_temp", "name = ?", new String[]{pCity});
         
     }    
 }

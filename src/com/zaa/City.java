@@ -42,7 +42,7 @@ public class City {
         gv_humidity = pHumidity;
     }
     public String GetPressure() {
-        return gv_humidity;
+        return gv_pressure;
     }
     public void SetPressure(String pPressure) {
         gv_pressure = pPressure;
@@ -115,6 +115,5 @@ public class City {
             }while(lv_city_cur.moveToNext());                
         }
         lv_city_cur.close();
-        CityTemp.DeleteOldCityTemp();
     }
 }
