@@ -85,10 +85,20 @@ public class City {
         lv_city.close();
     }
     
+    public void DeleteCity() {
+        SQLiteDatabase lv_db = gv_db_helper.getWritableDatabase();
+        lv_db.delete("city_temp", "name = ?", new String[]{gv_name});
+        lv_db.delete("city", "name = ?", new String[]{gv_name});
+        Cache.gv_city_temp.remove(gv_name);
+        Cache.gv_city.remove(gv_name);
+    }
+    
     public static void InitCity() {
         SQLiteDatabase lv_db = DbHelper.Get_Instance().getReadableDatabase();
         String lv_name;
         City lv_city;
+        Cache.gv_city = new Hashtable();
+        Cache.gv_city_temp = new Hashtable();
         Cursor lv_city_cur = lv_db.rawQuery("select * from city", null);
         if (lv_city_cur.getCount() != 0) {
             lv_city_cur.moveToFirst();
@@ -100,11 +110,11 @@ public class City {
                 lv_city.SetHumidity(lv_city_cur.getString(lv_city_cur.getColumnIndexOrThrow("humidity")));
                 lv_city.SetPressure(lv_city_cur.getString(lv_city_cur.getColumnIndexOrThrow("pressure")));
                 lv_city.SetWindSpeed(lv_city_cur.getString(lv_city_cur.getColumnIndexOrThrow("wind_speed")));
-                Cashe.gv_city = new Hashtable();
-                Cashe.gv_city.put(lv_name, lv_city);
+                Cache.gv_city.put(lv_name, lv_city);
                 CityTemp.InitCityTemp(lv_name);
             }while(lv_city_cur.moveToNext());                
         }
         lv_city_cur.close();
+        CityTemp.DeleteOldCityTemp();
     }
 }

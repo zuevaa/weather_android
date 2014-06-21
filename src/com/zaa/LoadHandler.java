@@ -19,6 +19,6 @@ public class LoadHandler extends Handler {
       }
       @Override
       public void handleMessage(Message pMsg) {
-          gv_weather.Check_Load(pMsg.what);
+          gv_weather.CheckLoad(pMsg.what);
       };    
 }

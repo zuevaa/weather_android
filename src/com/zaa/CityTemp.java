@@ -73,11 +73,11 @@ public class CityTemp {
         }
         lv_city_temp.close();
     }
+    
     public static void InitCityTemp(String pName) {
         SQLiteDatabase lv_db = DbHelper.Get_Instance().getReadableDatabase();
         CityTemp lv_city_temp;
         String lv_dt;
-        Cashe.gv_city_temp = new Hashtable();
         Hashtable lv_city_temp_col = new Hashtable();
         Cursor lv_city_temp_cur = lv_db.rawQuery("select * from city_temp where name = ? order by dt", new String[]{pName});
         if (lv_city_temp_cur.getCount() != 0) {
@@ -92,6 +92,13 @@ public class CityTemp {
             }while(lv_city_temp_cur.moveToNext());                
         }
         lv_city_temp_cur.close();
-        Cashe.gv_city_temp.put(pName, lv_city_temp_col);
+        Cache.gv_city_temp.put(pName, lv_city_temp_col);
+    }
+    
+    public static void DeleteOldCityTemp() {
+        SQLiteDatabase lv_db = DbHelper.Get_Instance().getWritableDatabase();
+        String lv_cur_time = String.valueOf((System.currentTimeMillis() / 1000L) - 86400);
+        lv_db.delete("city_temp", "dt < ?", new String[]{lv_cur_time});
+        
     }    
 }

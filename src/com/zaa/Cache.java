@@ -10,8 +10,7 @@ import java.util.Hashtable;
  *
  * @author ZuevAA
  */
-public class Cashe {
-    public static boolean gv_load, gv_net;
+public class Cache {
     public static Hashtable gv_city, gv_city_temp;
            
 }

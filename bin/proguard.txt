@@ -1,6 +1,6 @@
 # view AndroidManifest.xml #generated:9
 -keep class com.zaa.Weather { <init>(...); }
 
-# onClick res/layout/main.xml #generated:7
+# onClick res/layout/main.xml #generated:11
 -keepclassmembers class * { *** onClick(...); }
 

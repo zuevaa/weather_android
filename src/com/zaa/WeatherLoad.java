@@ -7,12 +7,6 @@
 package com.zaa;
 
 
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.app.Service; 
-import android.os.IBinder; 
-import java.util.concurrent.TimeUnit;
-import android.content.Intent;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -27,7 +21,6 @@ import java.io.StringWriter;
 import java.net.URLEncoder;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import android.os.AsyncTask;
 
 public class WeatherLoad {
     
@@ -42,7 +35,7 @@ public class WeatherLoad {
         try{
             City.InitCity();
             String lv_name, lv_dt, lv_encoding, lv_response;
-            Set lt_keys = Cashe.gv_city.keySet ();        
+            Set lt_keys = Cache.gv_city.keySet ();
             Iterator lv_iterator = lt_keys.iterator ();
             JSONArray lv_json_array, lv_json_weather;
             JSONObject lv_json, lv_json_response, lv_json_weather_row, lv_json_temp;
@@ -53,7 +46,7 @@ public class WeatherLoad {
             Hashtable lv_city_temp_col;
             while (lv_iterator.hasNext ()) {
                 lv_name = lv_iterator.next().toString();
-                lv_city_temp_col = (Hashtable)Cashe.gv_city_temp.get(lv_name);
+                lv_city_temp_col = (Hashtable)Cache.gv_city_temp.get(lv_name);
                 lv_connection = (HttpURLConnection)new URL("http://api.openweathermap.org/data/2.5/weather?q="+URLEncoder.encode(lv_name, "utf-8")+"&units=metric").openConnection();
                 lv_connection.setConnectTimeout(30000);
                 lv_connection.setReadTimeout(30000);
@@ -68,10 +61,9 @@ public class WeatherLoad {
                     lv_in_stream = new GZIPInputStream(lv_in_stream);
                 }
                 lv_response = convertStreamToString(lv_in_stream);
-                Cashe.gv_net = true;
                 lv_json_response = new JSONObject(lv_response);
                 if (lv_json_response.getString("cod").equals("200")) {
-                    lv_city = (City)Cashe.gv_city.get(lv_name);
+                    lv_city = (City)Cache.gv_city.get(lv_name);
                     lv_json = lv_json_response.getJSONObject("main");
                     lv_city.SetTemp(lv_json.getString("temp"));
                     lv_city.SetPressure(lv_json.getString("pressure"));
@@ -100,7 +92,6 @@ public class WeatherLoad {
                     lv_in_stream = new GZIPInputStream(lv_in_stream);
                 }
                 lv_response = convertStreamToString(lv_in_stream);
-                Cashe.gv_net = true;
                 lv_json_response = new JSONObject(lv_response);
                 if (lv_json_response.getString("cod").equals("200")) {
                     lv_json_array = lv_json_response.getJSONArray("list");

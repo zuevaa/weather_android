@@ -75,6 +75,7 @@ Z:\home\googleappengine\weather\res\drawable-xhdpi\w13d.png \
 Z:\home\googleappengine\weather\res\drawable-xhdpi\w13n.png \
 Z:\home\googleappengine\weather\res\drawable-xhdpi\w50d.png \
 Z:\home\googleappengine\weather\res\drawable-xhdpi\w50n.png \
+Z:\home\googleappengine\weather\res\layout\add_city.xml \
 Z:\home\googleappengine\weather\res\layout\list_item.xml \
 Z:\home\googleappengine\weather\res\layout\load_dialog.xml \
 Z:\home\googleappengine\weather\res\layout\main.xml \
