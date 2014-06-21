@@ -11,7 +11,7 @@ import java.util.Hashtable;
  * @author ZuevAA
  */
 public class Cashe {
-    public static boolean gv_refresh, gv_load, gv_net;
+    public static boolean gv_load, gv_net;
     public static Hashtable gv_city, gv_city_temp;
            
 }

@@ -31,8 +31,18 @@ public final class R {
         public static final int w50d=0x7f020011;
         public static final int w50n=0x7f020012;
     }
+    public static final class id {
+        public static final int addCity=0x7f050004;
+        public static final int cityName=0x7f050001;
+        public static final int curTemp=0x7f050002;
+        public static final int listView=0x7f050005;
+        public static final int progressBar=0x7f050003;
+        public static final int weatherIcon=0x7f050000;
+    }
     public static final class layout {
-        public static final int main=0x7f030000;
+        public static final int list_item=0x7f030000;
+        public static final int load_dialog=0x7f030001;
+        public static final int main=0x7f030002;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
