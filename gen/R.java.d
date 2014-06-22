@@ -85,7 +85,7 @@ Z:\home\googleappengine\weather\res\layout\list_item_city.xml \
 Z:\home\googleappengine\weather\res\layout\list_item_city_temp.xml \
 Z:\home\googleappengine\weather\res\layout\load_dialog.xml \
 Z:\home\googleappengine\weather\res\layout\main.xml \
-Z:\home\googleappengine\weather\res\layout-large\main.xml \
+Z:\home\googleappengine\weather\res\layout-sw600dp\main.xml \
 Z:\home\googleappengine\weather\res\values\strings.xml \
 Z:\home\googleappengine\weather\res\values-sw600dp\strings.xml \
 Z:\home\googleappengine\weather\bin\res\drawable-hdpi\delete.png \
