@@ -12,5 +12,5 @@ import java.util.Hashtable;
  */
 public class Cache {
     public static Hashtable gv_city, gv_city_temp;
-           
+    public static String gv_cur_city_name;
 }

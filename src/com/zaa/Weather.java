@@ -23,6 +23,7 @@ import android.widget.ImageButton;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -39,8 +40,7 @@ public class Weather extends Activity
     Timer gv_timer;
     View gv_dialog_view;
     CityAdapter gv_city_adapter;
-    boolean gv_in_view;
-    String gv_cur_city;
+    boolean gv_in_view, gv_is_table;
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -48,11 +48,21 @@ public class Weather extends Activity
         gv_handler = new LoadHandler(this);
         gv_context = this;
         DbHelper.Get_Instance(this);
-        StartLoad();
+        gv_is_table = getResources().getBoolean(R.bool.isTablet);
+        if (Cache.gv_city == null) {
+            StartLoad();
+        }
+        else {
+            ShowMain();
+            if (Cache.gv_cur_city_name != null) {
+                ShowDetail(Cache.gv_cur_city_name);
+            }
+        }
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && gv_in_view) {
+            Cache.gv_cur_city_name = null;
             ShowMain();
             return true;
         }
@@ -106,7 +116,6 @@ public class Weather extends Activity
     }
     void ShowMain() {
         gv_in_view = false;
-        gv_cur_city = null;
         setContentView(R.layout.main);
         Button lv_button = (Button)findViewById(R.id.addCity);
         lv_button.setOnClickListener(new OnClickListener() {
@@ -157,54 +166,68 @@ public class Weather extends Activity
     OnItemClickListener OnCityClickListener = new OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            gv_in_view = true;
-            String lv_name = gv_city_adapter.Get_Name(position), lv_image_resource;
-            gv_cur_city = lv_name;
-            TextView lv_text_view;
-            City lv_city = (City)Cache.gv_city.get(lv_name);
-            setContentView(R.layout.city_view);
-                        Time lv_cur_time = new Time();
-            lv_cur_time.setToNow();
-            if (Integer.parseInt(lv_cur_time.format("%H")) > 7 && Integer.parseInt(lv_cur_time.format("%H")) < 22 ) {
-                lv_image_resource = "w"+lv_city.GetIcon()+"d";
-            }
-            else {
-                lv_image_resource = "w"+lv_city.GetIcon()+"n";
-            }
-            
-            ImageView lv_image = (ImageView) findViewById(R.id.cityViewWeatherIcon);
-            lv_image.setImageResource(gv_context.getResources().getIdentifier(lv_image_resource, "drawable", gv_context.getPackageName()));
-            lv_text_view = (TextView)findViewById(R.id.cityViewName);
-            lv_text_view.setText(lv_name);
-            lv_text_view = (TextView)findViewById(R.id.cityViewTemp);
-            lv_text_view.setText(lv_city.GetTemp()+"°C");
-            lv_text_view = (TextView)findViewById(R.id.cityViewHumidity);
-            lv_text_view.setText(lv_city.GetHumidity()+"%");
-            lv_text_view = (TextView)findViewById(R.id.cityViewPressure);
-            lv_text_view.setText(lv_city.GetPressure()+" Па");
-            lv_text_view = (TextView)findViewById(R.id.cityViewWindSpeed);
-            lv_text_view.setText(lv_city.GetWindSpeed()+" м/c");
-            ListView lv_list_view = (ListView) findViewById(R.id.listCityTemp);
-            ArrayList<String> lv_list = new ArrayList<String>();
-            Hashtable lv_city_temp_col = (Hashtable)Cache.gv_city_temp.get(lv_name);
-            Set lt_keys = lv_city_temp_col.keySet ();
-            Iterator lv_iterator = lt_keys.iterator ();
-            while (lv_iterator.hasNext ()) {
-                lv_list.add(lv_iterator.next().toString());
-            }
-            Collections.sort(lv_list);
-            CityTempAdapter lv_adapter = new CityTempAdapter(lv_name, gv_context, R.layout.list_item_city_temp, R.id.tempDate, lv_list);
-            lv_list_view.setAdapter(lv_adapter);
-            lv_image = (ImageView)findViewById(R.id.delCity);
-            lv_image.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    City lv_city = new City(gv_cur_city);
-                    lv_city.DeleteCity();
-                    ShowMain();
-                }
-            });
+            String lv_name = gv_city_adapter.Get_Name(position);
+            ShowDetail(lv_name);
         }
     };
+    void ShowDetail(String pName) {
+        Cache.gv_cur_city_name = pName;
+        String lv_image_resource;
+        if (gv_is_table) {
+            LinearLayout lv_deatail_view = (LinearLayout) findViewById(R.id.detail_view);
+            lv_deatail_view.removeAllViews();
+            LayoutInflater lv_inflater = LayoutInflater.from(gv_context);
+            lv_deatail_view.addView(lv_inflater.inflate(R.layout.city_view, null));                
+        }
+        else {
+            gv_in_view = true;
+            setContentView(R.layout.city_view);
+        }            
 
+        TextView lv_text_view;
+        City lv_city = (City)Cache.gv_city.get(pName);
+
+        Time lv_cur_time = new Time();
+        lv_cur_time.setToNow();
+        if (Integer.parseInt(lv_cur_time.format("%H")) > 7 && Integer.parseInt(lv_cur_time.format("%H")) < 22 ) {
+            lv_image_resource = "w"+lv_city.GetIcon()+"d";
+        }
+        else {
+            lv_image_resource = "w"+lv_city.GetIcon()+"n";
+        }
+
+        ImageView lv_image = (ImageView) findViewById(R.id.cityViewWeatherIcon);
+        lv_image.setImageResource(gv_context.getResources().getIdentifier(lv_image_resource, "drawable", gv_context.getPackageName()));
+        lv_text_view = (TextView)findViewById(R.id.cityViewName);
+        lv_text_view.setText(pName);
+        lv_text_view = (TextView)findViewById(R.id.cityViewTemp);
+        lv_text_view.setText(lv_city.GetTemp()+"°C");
+        lv_text_view = (TextView)findViewById(R.id.cityViewHumidity);
+        lv_text_view.setText(lv_city.GetHumidity()+"%");
+        lv_text_view = (TextView)findViewById(R.id.cityViewPressure);
+        lv_text_view.setText(lv_city.GetPressure()+" Па");
+        lv_text_view = (TextView)findViewById(R.id.cityViewWindSpeed);
+        lv_text_view.setText(lv_city.GetWindSpeed()+" м/c");
+        ListView lv_list_view = (ListView) findViewById(R.id.listCityTemp);
+        ArrayList<String> lv_list = new ArrayList<String>();
+        Hashtable lv_city_temp_col = (Hashtable)Cache.gv_city_temp.get(pName);
+        Set lt_keys = lv_city_temp_col.keySet ();
+        Iterator lv_iterator = lt_keys.iterator ();
+        while (lv_iterator.hasNext ()) {
+            lv_list.add(lv_iterator.next().toString());
+        }
+        Collections.sort(lv_list);
+        CityTempAdapter lv_adapter = new CityTempAdapter(pName, gv_context, R.layout.list_item_city_temp, R.id.tempDate, lv_list);
+        lv_list_view.setAdapter(lv_adapter);
+        lv_image = (ImageView)findViewById(R.id.delCity);
+        lv_image.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                City lv_city = new City(Cache.gv_cur_city_name);
+                lv_city.DeleteCity();
+                Cache.gv_cur_city_name = null;
+                ShowMain();
+            }
+        });
+    }
 }
